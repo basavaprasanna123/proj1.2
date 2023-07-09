@@ -41,9 +41,9 @@ pipeline {
         stage('MODIFIED IMAGE TAG') {
             steps {
                 sh '''
-                   export dockerhub_username=sunnydevops2022
-                   echo $dockerhub_username
-                   sed -i "s/$dockerhub_username/$DOCKERHUB_USER/g" $WORKSPACE/playbooks/dep_svc.yml
+                   export DOCKERHUB_USER=sunnydevops2022
+                   echo $DOCKERHUB_USER
+                   sed -i "s/dockerhub_username/$DOCKERHUB_USER/g" $WORKSPACE/playbooks/dep_svc.yml
                    sed -i "s/image_name:latest/$JOB_NAME:v1.$BUILD_ID/g" $WORKSPACE/playbooks/dep_svc.yml
                    cat $WORKSPACE/playbooks/dep_svc.yml
                    '''
